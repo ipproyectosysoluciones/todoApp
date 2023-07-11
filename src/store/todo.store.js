@@ -28,11 +28,33 @@ const loadStore = () => {
 };
 
 /**
+ * Función para obtener los 'Todo'
+ * @param { String } filter 
+*/
+const getTodo = ( filter = Filters.All ) => {
+  switch ( filter ) {
+    case Filters.All:
+      return [ ...state.todos ];
+
+    case Filters.Complited:
+      return state.todos.filter( todo => todo.done );
+
+      case Filters.Pending:
+      return state.todos.filter( todo => !todo.done );
+  
+      default:
+      throw new Error( `Option ${ filter } is not valid` );
+  }
+};
+
+/**
  * Función para agregar Todo
  * @param { String } description 
  */
 const addTodo = ( description ) => {
-  throw new Error( 'Not Implemented' );
+  if ( description ) throw new Error( 'Description is required' );
+
+  state.todos.push( new Todo( description ) );
 };
 
 /**
@@ -48,29 +70,29 @@ const toogleTodo = ( todoId ) => {
  * @param { String } todoId 
  */
 const deleteTodo = ( todoId ) => {
-  throw new Error( 'Not Implemented' );
+  state.todos = state.todos.filter( todo => todo.id !== todoId );
 };
 
 /**
  * Elimina los Todos 'completed'
  */
 const deleteCompleted = () => {
-  throw new Error( 'Not Implemented' );
+  state.todos = state.todos.filter( todo => todo.done );
 };
 
 /**
  * Función para manejar los filtros
- * @param { String } newFilters 
+ * @param { Filters } newFilters 
  */
-const setFilters = ( newFilters = Filters.All ) => {
-  throw new Error( 'Not Implemented' );
+const setFilters = ( newFilter = Filters.All ) => {
+  state.filter = newFilter;
 };
 
 /**
  * Función para controlar el acceso al 'Store'
  */
 const getCurrentFilters = () => {
-  throw new Error( 'Not Implemented' );
+  return state.filter;
 };
 
 export default {
@@ -78,6 +100,7 @@ export default {
   deleteCompleted,
   deleteTodo,
   getCurrentFilters,
+  getTodo,
   initStore,
   loadStore,
   setFilters,
