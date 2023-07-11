@@ -63,7 +63,7 @@ const addTodo = ( description ) => {
  * Función para saber sin una Todo ya esta 'completed' o no
  * @param { String } todoId 
  */
-const toogleTodo = ( todoId ) => {
+const toggleTodo = ( todoId ) => {
   state.todos = state.todos.map( todo => {
     if ( todo.id === todoId ) {
       todo.done = !todo.done;
@@ -111,5 +111,5 @@ export default {
   initStore,
   loadStore,
   setFilters,
-  toogleTodo,
+  toggleTodo,
 };
