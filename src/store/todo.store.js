@@ -1,9 +1,9 @@
 import { Todo } from "../todos/models/todo.model";
 
-const Filters = {
+export const Filters = {
   All: 'all',
-  Complited: 'complited',
-  Pending: 'pending',
+  Completed: 'Completed',
+  Pending: 'Pending',
 };
 
 const state = {
@@ -50,7 +50,7 @@ const getTodo = ( filter = Filters.All ) => {
     case Filters.All:
       return [ ...state.todos ];
 
-    case Filters.Complited:
+    case Filters.Completed:
       return state.todos.filter( todo => todo.done );
 
       case Filters.Pending:
