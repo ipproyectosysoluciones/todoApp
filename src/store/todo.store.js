@@ -45,7 +45,7 @@ const saveStateToLocalStorage = () => {
  * Función para obtener los 'Todo'
  * @param { String } filter 
 */
-const getTodo = ( filter = Filters.All ) => {
+const getTodos = ( filter = Filters.All ) => {
   switch ( filter ) {
     case Filters.All:
       return [ ...state.todos ];
@@ -57,7 +57,7 @@ const getTodo = ( filter = Filters.All ) => {
       return state.todos.filter( todo => !todo.done );
   
       default:
-      throw new Error( `Option ${ filter } is not valid` );
+      throw new Error( `Option ${ filter } is not valid.` );
   }
 };
 
@@ -129,7 +129,7 @@ export default {
   deleteCompleted,
   deleteTodo,
   getCurrentFilters,
-  getTodo,
+  getTodos,
   initStore,
   loadStore,
   setFilters,
